@@ -3,9 +3,6 @@ RSpec.describe 'Home' do
   let(:home_page) { HomePage.new }
 
   context 'without books' do
-    # Open Home page
-    before { visit '/' }
-
     it 'shows no books title' do
       # Check that Filters title is displayed
       expect(home_page.filters_title.text).to include('Filters')
@@ -26,9 +23,6 @@ RSpec.describe 'Home' do
     let!(:mob_books) { create_list(:book, 7, category: mob) }
     # Create 6 books with category 'Web development'
     let!(:web_books) { create_list(:book, 6, category: web) }
-
-    # Open Home page
-    before { visit '/' }
 
     it 'shows all books' do
       # Click on View More button
