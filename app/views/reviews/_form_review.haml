@@ -1,0 +1,27 @@
+.mb-80
+  %h3
+    = t(:'book.review')
+  %p.general-info-text
+    = t(:'book.score')
+  .row
+    .col-md-8
+      = form_for Review.new, method: :post do |form|
+        = form.hidden_field :book, value: book.slug
+        = form.hidden_field :book_id, value: book.id
+        = form.hidden_field :user_id, value: current_user.id
+        .starts
+          .rate
+            - BookDecorator::RAITING_STARS.each do |rate|
+              = form.radio_button :score, "#{rate}", id: "star"+"#{rate}"
+              %label{for: "star"+"#{rate}"}
+        .mb-40
+          .form-group
+            %label.control-label.input-label.in-grey-600{for: "title"}
+              = t(:'review.title')
+            = form.text_field :title, class: "form-control", id: "title"
+          .form-group.mt-50
+            %label.control-label.input-label.in-grey-600{for: "review"}
+              = t(:'review.body_field')
+            = form.text_area :body, class: "form-control", id: "review"
+        .text-right
+          = form.submit "#{t(:'review.btn_name')}", class: 'btn btn-default mb-20'

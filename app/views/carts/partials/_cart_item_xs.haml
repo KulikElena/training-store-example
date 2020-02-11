@@ -1,0 +1,33 @@
+.general-cart-item.divider-lg-bottom
+  %button.close.general-cart-close(aria-label='Close' type="button")
+    %span(aria-hidden="true") ×
+  .general-img-wrap-table
+    = image_tag( book_cover(book), alt: 'design-book', class: 'cart-img-shadow')
+  %p.title
+    = link_to book.title, book_path(book)
+  %table.table
+    %tr
+      %td
+        %span.in-grey-600
+          = t('cart.price')
+      %td
+        %span.font-16.in-gold-500
+          = t(:'book.price', price: book.price)
+    %tr
+      %td.vertical-middle
+        %span.in-grey-600
+          = t('cart.quantity')
+      %td
+        .input-group
+          = link_to order_items_path(book_id: book.id, value: quantity.to_i - 1), remote: true, method: :patch, class: "input-link minus" do
+            %i.fa.fa-minus.line-heaght-40
+          = f.text_field :quantity, name: book.id, value: "#{quantity}",remote: true, min: 1, readonly: true, class: "form-control quantity-input book-quantity-js"
+          = link_to order_items_path(book_id: book.id, value: quantity.to_i + 1), method: :patch, class: "input-link plus" do
+            %i.fa.fa-plus.line-heaght-40
+    %tr
+      %td
+        %span.in-grey-600
+          = t('cart.subtotal')
+      %td
+        %span.font-16.in-gold-500
+          = t('book.price', price: order_summary[:subtotal])

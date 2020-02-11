@@ -1,0 +1,72 @@
+%header.navbar.navbar-default
+  .container
+    .navbar-header
+      %button.navbar-toggle.pull-left{"data-target" => "#navbar", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'Bookstore', root_path, class: 'navbar-brand'
+    = link_to cart_path, class: "shop-link pull-right visible-xs" do
+      %span.shop-icon
+        %span.shop-quantity
+          = items_quantity
+    = link_to cart_path, class: "shop-link pull-right hidden-xs" do
+      %span.shop-icon
+        %span.shop-quantity
+          = items_quantity
+    #navbar.navbar-collapse.collapse.pl-30{"aria-expanded": "false"}
+      .visible-xs
+        %button.close{"aria-label": "Close", type: "button"}
+          %span{"aria-hidden": "true"} ×
+        %ul.nav.navbar-nav
+          %li
+            = link_to t('header.home'), root_path
+          %li
+            %a{"aria-controls": "menu", "aria-expanded": "false", "data-toggle": "collapse", href: "#menu", type: "button"}
+              = t('header.shop')
+            %ul#menu.collapse.list-unstyled.pl-30.mb-10{"aria-expanded" => "false"}
+              - categories.each do |category|
+                %li
+                  = link_to category.title, books_path(category: category.friendly_id)
+          - if user_signed_in?
+            %li.dropdown
+              %a{ href: '#'}
+                = current_user.email
+              %ul.dropdown-menu.dropdown-content
+                %li
+                  = link_to t('header.settings'), settings_path
+                %li.divider{role: "separator"}
+                %li
+                  = link_to t('header.logout'), destroy_user_session_path, method: :delete
+          - unless user_signed_in?
+            %li
+              = link_to t('header.sign_up'), new_user_registration_path, class: 'navbar-link'
+            %li
+              = link_to t('header.login'), new_user_session_path, class: 'navbar-link'
+      .hidden-xs
+        %ul.nav.navbar-nav
+          %li
+            = link_to t('header.home'), root_path
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+              = t('header.shop')
+            %ul.dropdown-menu
+              - categories.each do |category|
+                %li
+                  = link_to category.title, books_path(category: category.friendly_id)
+          - if user_signed_in?
+            %li.dropdown.user_email
+              %a{ href: '#'}
+                = current_user.email
+              %ul.dropdown-menu.dropdown-content
+                %li
+                  = link_to t('header.settings'), settings_path
+                %li.divider{role: "separator"}
+                %li
+                  = link_to t('header.logout'), destroy_user_session_path, method: :delete
+          - unless user_signed_in?
+            %li
+              = link_to t('header.sign_up'), new_user_registration_path, class: 'navbar-link'
+            %li
+              = link_to t('header.login'), new_user_session_path, class: 'navbar-link'

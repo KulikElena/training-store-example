@@ -1,0 +1,56 @@
+.col-sm-6.clearfix
+  .product-gallery
+    .mb-20
+      = image_tag( book_cover(book), alt: 'design-book', class: 'img-responsive')
+      .images.clearfix
+        - book.images.each do |file|
+          %img.minimize{alt: 'design-book', src: file.image_url, class: 'img-link'}/
+  = render 'reviews/book_reviews'
+.col-sm-6
+  %h1.mt-res-0
+    = book.title
+  %p.lead.small
+    = book.authors_all
+  .row
+    = form_with url: order_items_path, method: :post do |form|
+      .col-xs-12.col-md-4
+        %p.h1.in-gold-500.mt-10
+          =t(:'book.price', price: book.price)
+      .col-xs-5.col-md-3#book_quantity
+        .input-group.general-position
+          %a.input-link.pt-7#minus-book
+            %i.fa.fa-minus.line-height-40
+          = form.hidden_field :book_id, value: book.id
+          = form.text_field :quantity, value: 1, readonly: true, class: "form-control quantity-input book-quantity-js"
+          %a.input-link.pt-7#plus-book
+            %i.fa.fa-plus.line-height-40
+      .col-xs-7.col-md-5.pull-right
+        = form.submit I18n.t('book.add_to_card'), class: "btn btn-default pull-right general-position"
+  .general-info-wrap.divider-lg
+    %p
+      = t(:'book.description_title')
+    %p
+      %span.lead.small.line-height-2#short-desc
+        = book.short_description + "#{t(:'book.etc')}"
+      %span.lead.small.line-height-2#full-desc{style: 'display: none'}
+        = book.description
+      %span.in-gold-500.mg-0.p-0#read-more
+        =t(:'book.read_more')
+  .general-info-wrap.divider-lg
+    .clearfix
+      %p.pull-left
+        = t(:'book.release')
+      %p.lead.small.pull-right
+        = Time.at(book.publication_year).to_date
+  .general-info-wrap.divider-lg
+    .clearfix
+      %p.pull-left
+        = t(:'book.dimensions')
+      %p.lead.small.pull-right
+        =t(:'book.params', depth: book.depth, height: book.height, width: book.width)
+  .general-info-wrap.divider-lg
+    .clearfix
+      %p.pull-left
+        = t(:'book.material_title')
+      %p.lead.small.pull-right
+        = t(:'book.materials', material: book.material)

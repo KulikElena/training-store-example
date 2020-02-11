@@ -1,0 +1,96 @@
+%main.container
+  .row
+    .col-sm-4
+      %h1.general-title-margin
+        =t('settings.title')
+    .col-sm-4.text-center
+      #avatar{ class: 'img-circle', ondragover: "allowDrop(event)", ondrop: "drop(event)"}
+        = image_tag(user_cover(current_user), alt: 'user-img', class: 'img-circle user-size inlide-block')
+        = form_with  url: settings_url, method: :patch, id: 'avatar_form', remote: true do |f|
+          = f.hidden_field :new_avatar, value: nil, id: 'user_avatar'
+          = f.button 'update avatar', hidden: true
+      #overlay
+        .cv-spinner
+          %span.spinner
+    .col-sm-4.text-center
+      %h3.general-subtitle.mt-0
+        = I18n.t('settings.avatar_icons')
+      %br
+      - current_user.user_images.each do |image|
+        = image_tag(image.image_url, height: "69", ondragstart: "drag(event)", alt: 'user-img', id: 'avatar_icon', value: image.id, draggable: true, class: 'img-circle user-image-size inlide-block avatar')
+  %ul.nav.clearfix.mb-20(role="tablist")
+    %li.tab-item.active(role="presentation")
+      %a.tab-link(aria-controls="address" data-toggle="tab" href="#address" role="tab")
+        =t('settings.adress_tag')
+    %li.tab-item(role="presentation")
+      %a.tab-link(aria-controls="privacy" data-toggle="tab" href="#privacy" role="tab")
+        =t('settings.privacy_tag')
+  .tab-content
+    #address.tab-pane.fade.in.active.general-main-wrap(role="tabpanel")
+      .hidden-xs.hidden-sm
+        .row
+          .col-md-5
+            %h3.general-subtitle.mt-0
+              =t('settings.billing_address')
+          .col-md-5.col-md-offset-1
+            %h3.general-subtitle.mt-0
+              =t('settings.shipping_address')
+      .row
+        .col-md-5.mb-40.billing_address_section
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0
+              =t('settings.billing_address')
+          = simple_form_for @billing_address, as: :billing_address, url: settings_url, id: 'form_id', method: :patch,
+            defaults: { input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' },
+            label_html: { class: 'control-label input-label' } }, validate: true do |billing|
+            = render partial: 'address/form_address', locals: { f: billing, type: 'billing_address' }
+            = billing.button :submit, t('settings.save'), wrapper_html: { class: 'text-center general-text-align'}, input_html: { class: 'btn btn-default' }
+        .col-md-5.col-md-offset-1.mb-25.shipping_address_section
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0
+              =t('settings.shipping_address')
+          = simple_form_for(@shipping_address, as: :shipping_address, url: settings_url, validate: true, method: :patch,
+            defaults: { input_html: { class: 'form-control' }, wrapper_html: { class: 'form-group' },
+            label_html: { class: 'control-label input-label' } }) do |shipping|
+            = render partial: 'address/form_address', locals: { f: shipping, type: 'shipping_address' }
+            = shipping.button :submit, t('settings.save'), wrapper_html: { class: 'text-center general-text-align'}, input_html: { class: 'btn btn-default' }
+    #privacy.tab-pane.fade(role="tabpanel")
+      .row.mb-60
+        .col-sm-5
+          %p.in-gold-500.font-18.mb-25
+            =t('settings.email')
+            = simple_form_for(current_user, as: :email_form, url: settings_url, method: :patch,
+              defaults: { wrapper_html: { class: 'form-group mb-35 general-form-md' },
+              label_html: { class: 'control-label input-label' } }) do |f|
+              = f.input :email, label: t('quick_registration.login.enter_email'), placeholder: t('quick_registration.login.enter_email')
+              = f.button :submit, t('settings.save'), wrapper_html: { class: 'general-text-align btn btn-default mb-35' }
+          %p.in-gold-500.font-18.mb-25.pt-30
+            =t('settings.avatar')
+            = simple_form_for(current_user, as: :upload_image, url: settings_url, method: :patch,
+              defaults: { wrapper_html: { class: 'form-group mb-35 general-form-md' },
+              label_html: { class: 'control-label input-label' } }) do |f|
+              = f.input :image, as: :file, input_html: { onchange: 'readURL(this)' }
+              = f.button :submit, t('settings.save'), wrapper_html: { class: 'general-text-align btn btn-default mb-35' }
+        .col-sm-5.col-sm-offset-1
+          %p.in-gold-500.font-18.mb-25
+            =t('settings.password')
+          = simple_form_for(current_user, as: :password_form, url: settings_url, method: :patch, html: { class: 'divider-lg-bottom' },
+            defaults: { wrapper_html: { class: 'general-form-md pb-25' },
+            input_html: { class: 'form-control' }, label_html: { class: 'control-label input-label' } }) do |f|
+            = f.input :current_password, required: true, label: t('settings.old_password'), placeholder: t('settings.old_password')
+            = f.input :password, required: true, label: t('settings.new_password'), placeholder: t('settings.new_password')
+            = f.input :password_confirmation, required: true, label: t('settings.confirm_password'), placeholder: t('settings.confirm_password')
+            = f.button :submit, t('settings.save'), class: 'btn btn-default mb-10', wrapper_html: { class: 'general-text-align' }
+        .col-sm-12
+          %p.in-gold-500.font-18.mb-25
+            =t('settings.remove_account')
+          = simple_form_for current_user, method: :delete, class: "general-form-md pb-25", url: registration_path(current_user) do |f|
+            .general-settings-btn
+              = f.submit t('settings.btn_remove_account'), class: "btn disabled mb-20", id: 'delete_account'
+            .form-group.checkbox.general-settings-checkbox
+              %label.font-weight-light.pl-0
+                %input.checkbox-input{type: "checkbox", hidden: "true", id: 'enable_button'}
+                %span.checkbox-icon
+                  %i.fa.fa-check
+                %span.checkbox-text
+                  =t('settings.checkbox_remove_account')

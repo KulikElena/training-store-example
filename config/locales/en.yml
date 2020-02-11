@@ -1,0 +1,248 @@
+en:
+  delete_account_alert: 'Your profile will be permanently deleted'
+  your: 'your'
+  my: 'my'
+  close: 'Close'
+  enter: 'Enter'
+  continue_button: 'Continue to Checkout'
+  devise:
+    confirm_label: 'Confirm your new password'
+    change_entity_password: "Change %{entity} password"
+    enter_password: 'Enter password'
+    fogot_password: 'Forgot your password?'
+    hello: 'Hello %{email}'
+    welcome: "Welcome %{email}"
+    confirm_account: 'Confirm my account'
+    confirm_email: 'You can confirm your account email through the link below:'
+    reset_password_btn: 'Send me reset password instructions'
+  flash:
+    alert: 'alert'
+    confirm_registration: 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
+  active_admin:
+    shipped: 'Shipped'
+    delivered: 'Delivered'
+    view: 'View'
+    order_items: 'Order items'
+    order_item: 'Order item'
+    to_approved: 'To approved'
+    to_unapproved: 'To unapproved'
+    to_prcessed: 'Processed'
+    canceled: 'To canceled'
+    order_shipped: 'Order was shipped'
+    order_delivered: 'Order was delivered'
+    review_unapproved: 'Review was unapproved'
+    review_approved: 'Review was approved'
+  mailer:
+    mailer: 'mailer'
+    confirm_order: "Thanks for making order! Number of your order is %{number}"
+    user: 'bookstore.rg@gmail.com'
+    confirmation: 'Thanks for your order!'
+  application_controller:
+    no_admin_access: 'Unauthorized Access!'
+  registrations:
+    access_denied: 'Access denied'
+    can_not_use_account: 'You can`t use this email'
+  price: "€ %{price}"
+  order_items:
+    empty_cart: 'Cart is empty'
+    added_to_card: 'Added to card'
+    disabled_add_to_card: 'Cann`t add to card'
+  header:
+    shop: 'Shop'
+    account: 'My account'
+    home: 'Home'
+    logout: 'Logout'
+    sign_up: 'Sign up'
+    login: 'Login'
+    orders: 'Orders'
+    settings: 'Settings'
+  orders_page:
+    columns_title:
+      number: 'Number'
+      completed_at: 'Completed at'
+      status: 'Status'
+      total: 'Total'
+  homepage:
+    title_h1: 'Real-Life Responsive Web Design'
+    book_description: 'Smart front-end techniques and design patterns derived from real-life responsive projects'
+    book_authors: 'Vitaly Friedman, Daniel Mall,Vitaly Friedman'
+    buy_btn: 'Buy Now'
+    carules:
+      previous: 'Previous'
+      next: 'Next'
+    middle_part:
+      title: 'Welcome to our amazing Bookstore!'
+      info: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
+      start_btn: 'Get Started'
+    best_sellers:
+      title: 'Best Sellers'
+  catalog:
+    title: 'Catalog'
+    all_categories: 'All'
+    categories_title_xs: 'Filter by category'
+    filters_title_xs: 'Sort by'
+    view_more: 'View more'
+  book:
+    add_to_card: 'Add to card'
+    back_button: 'Back to results'
+    material_title: 'Materials'
+    materials: "%{material}"
+    params: "H:%{height}\" x W: %{width}\" x D: %{depth}"
+    dimensions: 'Dimensions'
+    etc: '...'
+    release: 'Year of publication'
+    price: "€ %{price}"
+    description_title: 'Description'
+    read_more: 'Read more'
+    review: 'Write a Review'
+    score: 'Score'
+  filters:
+    publication_in_range: 'Publication in range'
+    all_books: 'All books'
+    can_not_find_books: 'Can`t find books'
+    categories: 'Categories:'
+    date: 'Publication untill date'
+    authors: 'Authors:'
+    title: 'Filters:'
+    max_price: 'Max price:'
+    created_at_desc: 'Newest first'
+    popular_desc: 'Popular first'
+    title_asc: 'Title A-Z'
+    title_desc: 'Title Z-A'
+    price_asc: 'Price: Low to high'
+    price_desc: 'Price: High to low'
+  review:
+    verified: ' (verified reviewer)'
+    title: 'Title'
+    body_field: 'Review'
+    btn_name: 'Post'
+    reviews_title: 'Reviews (%{amount})'
+    date_review: "%{day}/%{month}/%{year}"
+    saved_comment: 'Your comment saved'
+    wrong_comment: 'Your comment has not been saved'
+  settings:
+    avatar_icons: 'Available avatar icons'
+    avatar: 'Update avatar'
+    confirm_password: 'Confirm Password'
+    title: 'Settings'
+    adress_tag: 'Address'
+    privacy_tag: 'Privacy'
+    billing_address: 'Billing Address'
+    shipping_address: 'Shipping Address'
+    first_name: 'First Name'
+    emtpy_first_name: 'Please enter your first name'
+    last_name: 'Last Name'
+    adress_area: 'Address'
+    city: 'City'
+    zip: 'Zip'
+    country: 'Country'
+    phone: 'Phone'
+    save: 'Save'
+    email: 'Email'
+    password: 'Password'
+    old_password: 'Old Password'
+    new_password: 'New Password'
+    updated_password: 'Updated password'
+    updated_email: 'Email was update'
+    mistake_update_password: 'Can`t update password'
+    mistake_update_email: 'Can`t update email'
+    remove_account: 'Remove Account'
+    btn_remove_account: 'Please Remove My Account'
+    checkbox_remove_account: 'I understand that all data will be lost'
+  forms:
+    phone: 'Phone must be format +38002353535'
+    zip: 'Zip code must be format 49000'
+    address: 'Address must be format `Bojenko 100, 23`'
+    fields: "can't be blank"
+    card_namber: 'Please enter a valid credit card number'
+    card_cvv: 'Must be number from 3 to 4 digit'
+    card_name: 'Please enter enter name using words in upper and lowercase'
+    expiry_date: "Expire date should be in format like '00/00'"
+    wrong_zip_length: 'Zip is too long (maximum is 5 characters)'
+    empty_last_name: "Last name can't be blank and Last name can't be blank"
+    empty_first_name: "First name can't be blank and First name can't be blank"
+    epmty_city: "City can't be blank and City can't be blank"
+    empty_country: "Country can't be blank"
+    empty_address: "Address can't be blank and Address is too short (minimum is 5 characters)"
+    epmty_phone: "Phone can't be blank and Phone Phone must be format +38002353535"
+    expired_card_date: ' should be from working card'
+    wrong_format_date_card: 'Check expiry date format of card.'
+  cart:
+    title_cart: 'Cart'
+    eneble_coupon: 'You have successfully implemented a coupon to your order.'
+    disabled_coupon: 'You can`t implemented a coupon to your order.'
+    guest_coupon: 'Enter before implement coupon'
+    price: 'Price'
+    quantity: 'Quantity'
+    subtotal: 'SubTotal:'
+    product: 'Product'
+    coupon_field: 'Enter Your Coupon Code'
+    summary: 'Order Summary'
+    coupon: 'Coupon:'
+    order_total: 'Order Total:'
+    checkout: 'Checkout'
+    coupon_button: 'Apply Coupon'
+  quick_registration:
+    autocomplete_email: 'email'
+    autocomplete_password: 'current-password'
+    facebook: 'Facebook'
+    created_password: "Your password is %{password}"
+    log_in: 'Log In'
+    login:
+      title: 'Returning Customer'
+      form_title: 'Log In with Password'
+      login_button: 'Log In with Password'
+      enter_email: 'Enter email'
+    registration:
+      title: 'New Customer'
+      form_title: 'Quik Register'
+      form_notice: 'You’ll be able to create password later'
+  summary:
+    title: 'Order Summary'
+    item_total: 'Item Total:'
+    subtotal: 'Subtotal:'
+    order_total: 'Order Total:'
+    coupon: 'Coupon:'
+  checkout:
+    title: 'Checkout'
+    button: 'Save and Continue'
+    card_title: 'Credit Card'
+    address:
+      billing_title: 'Billing Address'
+      shipping_title: 'Shipping Address'
+      require_filds: 'all fields are required'
+      checkbox: 'Use Billing Adress'
+      summary_title: 'Order Summary'
+      summary_total: 'Item Total:'
+    delivery:
+      delivery_title: 'Delivery'
+      deadlines: "from %{from} to %{to}"
+      method_column: 'Method'
+      days_column: 'Days'
+      price_column: 'Price'
+    payment:
+      allow_digits: 'Number of 3-4 digits'
+      card_number: 'Card Number'
+      error_card_number: 'Please enter a valid credit card number'
+      name: 'Name on Card'
+      card_date: 'MM / YY'
+      cvv: 'CVV'
+      error_field_can_not_be_empty: "Can't be blank"
+      error_cvv: 'is too long (maximum is 4 characters)'
+      error_expiry_date: 'Expiry date should be from working card'
+    confirm:
+      confirm_button: 'Place Order'
+      full_name: "%{full_name}"
+      edit_link: 'Edit'
+      shipments: 'Shipments'
+      payment_info: 'Payment Information'
+      book_title: 'Book'
+      book_price: 'Price'
+      book_quantity: 'Quantity'
+      book_total: 'Total'
+    complete:
+      back_to_store: 'Back to Store'
+      order_number: "Order %{order}"
+      created_date: "%{date}"
+      sms_notify: 'An order number has been sent to %{email}'
+      thanks_for_order: 'Thank You for your Order!'

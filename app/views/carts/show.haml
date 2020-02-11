@@ -1,0 +1,4 @@
+%main.container.general-main-wrap.h-100
+  %h1.general-title-margin
+    = I18n.t('cart.title_cart')
+  = render partial: (@items.present? ? 'carts/partials/cart_form' : 'carts/partials/cart_empty')

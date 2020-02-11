@@ -1,0 +1,25 @@
+.row.res-mr-200.text-center.general-text-right
+  %p.in-gold-500.font-18
+    = t('cart.summary')
+  %table.general-summary-table.general-summary-table-right.general-text-right
+    %tr
+      %td
+        %p.font-16
+          = t('cart.subtotal')
+      %td
+        %p.font-16
+          = t('book.price', price: order_summary[:subtotal])
+    %tr
+      %td
+        %p.font-16
+          =t('cart.coupon')
+      %td
+        %p.font-16
+          = t('book.price', price: order_summary[:coupon])
+    %tr
+      %td
+        %strong.font-18
+          = t('cart.order_total')
+      %td
+        %strong.font-18
+          = t('book.price', price: order_summary[:total])

@@ -1,0 +1,20 @@
+PreCommit:
+  RSpec:
+    enabled: true
+    on_warn: fail
+
+  RuboCop:
+    enabled: true
+    on_warn: fail
+
+  Fasterer:
+    enabled: true
+    on_warn: fail
+
+  RailsBestPractices:
+    enabled: true
+    on_warn: fail
+
+  Brakeman:
+    enabled: true
+    on_warn: fail

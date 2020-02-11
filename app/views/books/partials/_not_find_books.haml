@@ -1,0 +1,9 @@
+.mg-0.height-600.text-center
+  .row#no_books
+    = image_tag(no_books_image, alt: 'design-book', class: 'inlide-block img-responsive')
+    %p.mt-20
+      %h2.text-bold
+        = I18n.t('filters.can_not_find_books')
+        %br
+          = link_to books_path, class: 'filter-link' do
+            = I18n.t('filters.all_books')

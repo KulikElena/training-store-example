@@ -1,0 +1,85 @@
+%main.container
+  .col-sm-2.p-0
+    .pull-right#filters
+      %h1.mg-0.mb-60
+        = I18n.t('filters.title')
+      .range
+        %form{ remote: true }
+          .filter-link
+            = I18n.t('filters.max_price')
+            %input.pull-right#yyy{ type: "text", value: @price, readonly: true}
+          %input.slider#xxx{ max: @maximum_price, min: @minimum_price, step: BooksQuery::RUNNER_STEP, type: "range", value: @price, name: 'max_price'}/
+          .filter-link.mt-20
+            = I18n.t('filters.categories')
+          %br
+            - categories.each do |category|
+              %label.authors-side-filter.font-weight-light.pl-0{ for: category.id}
+                %input.radio-input{ hidden: true, name: "category", type: "radio", value: category.id, id: category.id, checked: @category.to_i == category.id ? true : false }
+                  %span.radio-icon#icon
+                  = category.title
+              %br
+          %br
+            .filter-link
+              = I18n.t('filters.authors')
+            %br
+              %fieldset
+                - Author.all.each do |author|
+                  %label.font-weight-light.pl-0.authors-side-filter.d-block
+                    = author.full_name
+                    %input.checkbox-input{ type: "checkbox",checked: @authors.include?(author.id.to_s) ? true : false, hidden: true, name: 'author_ids[]', value: author.id }
+                    %span.checkbox-icon.pull-right
+                      %i.fa.fa-check
+            %br
+              .filter-link
+                = I18n.t('filters.publication_in_range')
+                %input.text-center{ name: "date_range", id: 'calendar_range', type: "text", value: @date_range }
+              .filter-link
+                = I18n.t('filters.date')
+                %input.text-center{"data-provide": "datepicker", id: 'untill_date', value: @untill_date, 'data-date-format': "yyyy/mm/dd", type: 'text', name: 'untill_date'}
+              .text-center.mt-20
+                %input.btn.w-100#filter_btn{type: 'submit', value: 'Search'}
+      .range
+        .try-display-in-seconds
+          %form
+            %p
+  .col-sm-10
+    %h1.general-title-margin
+      = t(:'catalog.title')
+    .hidden-xs.clearfix
+      .dropdowns.pull-right
+        .dropdown.width-240
+          = render partial: 'books/partials/dropdown_filters', locals: { filter: @current_filter, category: @category }
+      %ul.list-inline.pt-10.mb-25.mr-240
+        %li.mr-35.category_info
+          = link_to books_path, class: 'filter-link' do
+            = t(:'catalog.all_categories')
+            %span.badge.general-badge
+              = all_books_quantity
+        - categories.each do |category|
+          %li.mr-35.category_info
+            = link_to books_path(category: category), class: 'filter-link' do
+              = category.title
+              %span.badge.general-badge
+                = category.books.count
+    .dropdowns.mb-25.visible-xs
+      %p.lead.small.mb-10
+        = t(:'catalog.categories_title_xs')
+      .dropdown
+        %a.dropdown-toggle.lead.small{'data-toggle': 'dropdown', role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+          = @current_filter
+          %i.fa.fa-angle-down.dropdown-icon.pull-right
+        %ul.dropdown-menu
+          - categories.each do |category|
+            %li
+              = link_to books_path(filter: category), class: 'filter-link' do
+                = category.title
+      %p.lead.small.mb-10
+        = t(:'catalog.filters_title_xs')
+      .dropdown
+        = render partial: 'books/partials/dropdown_filters', locals: { filter: @current_filter, category: @category }
+    .mb-120
+      .row
+        = render partial: 'books/partials/not_find_books' if @books.empty?
+        = render partial: 'books/partials/preview', id: 'books', collection: @books, as: :book if @books.present?
+      .text-center
+        = link_to t(:view_more), pagy_url_for(@pagy.next, @pagy), class: 'btn btn-default', remote: true, id: 'view_more' if @pagy.next

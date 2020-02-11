@@ -1,0 +1,29 @@
+.visible-xs
+  = simple_form_for cart_path, method: :patch do |f|
+    - @items.each do |book, quantity|
+      = render partial: 'carts/partials/cart_item_xs', locals: {f: f, book: book, quantity: quantity}
+.hidden-xs
+  %table.table.table-hover
+    %tr.no-hover
+      %th.col-pic.pl-0
+        %span.in-grey-600
+          =t('cart.product')
+      %th.col-title
+      %th.col-price
+        %span.in-grey-600
+          = t('cart.price')
+      %th.col-quantity
+        %span.in-grey-600
+          = t('cart.quantity')
+      %th.col-total
+        %span.in-grey-600
+          = t('cart.subtotal')
+      %th.col-close
+    -# = render partial: 'carts/partials/cart_empty'
+    = simple_form_for cart_path, method: :patch do |f|
+      - @items.each do |book, quantity|
+        = render partial: 'carts/partials/cart_item', locals: {f: f, book: book, quantity: quantity}
+.general-order-wrap
+  .row.text-center
+    = render partial: 'carts/partials/summary'
+    = link_to t('cart.checkout'), books_path, class: 'btn btn-default mb-20'

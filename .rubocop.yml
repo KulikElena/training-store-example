@@ -1,0 +1,72 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'node_modules/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'app/**/*'
+    - 'sekrets/**/*'
+  TargetRubyVersion: 2.6
+
+Layout/LineLength:
+  Max: 130
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context', 'it', 'ActiveAdmin.register']
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/models/ability.rb'
+
+Style/RedundantInterpolation:
+  Exclude:
+    - 'app/views/orders/**/*'
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - 'app/decorators/book_decorator.rb'
+
+Documentation:
+  Enabled: false
+
+NamedSubject:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: true
+  Max: 40
+
+RSpec/DescribeClass:
+  Enabled: false

@@ -1,0 +1,23 @@
+= render 'reviews/form_review' if user_signed_in?
+.mb-80
+  %h3.in-gold-500.mb-25
+    = t(:'review.reviews_title', amount: book.reviews.count)
+  - book.all_reviews.each do |review|
+    - if review.approved?
+      .general-message-wrap.divider-lg
+        .clearfix
+          = image_tag(user_cover(review.user), alt: 'user-img', class: 'img-circle logo-size inlide-block pull-left')
+          .ml-70
+            %div
+              .general-message-date.hidden-xs
+                = t(:'review.date_review',
+                    day: review.created_at.day,
+                    month: review.created_at.month > 10 ? review.created_at.month : '0' + review.created_at.month.to_s,
+                    year: review.created_at.year.to_s.last(2))
+            .mb-15
+              - review.score.times do
+                %i.fa.fa-star.rate-star
+              - (BookDecorator::RAITING_STARS.max - review.score).times do
+                %i.fa.fa-star.rate-star.rate-empty
+            %p
+              = review.body

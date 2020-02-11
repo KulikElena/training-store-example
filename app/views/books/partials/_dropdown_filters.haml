@@ -1,0 +1,7 @@
+%a.dropdown-toggle.lead.small{'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+  = filter
+  %i.fa.fa-angle-down.dropdown-icon.pull-right
+%ul.dropdown-menu
+  -BooksQuery::FILTERS.each do |filter, filter_name|
+    %li
+      = link_to filter_name, url_for(selection: filter_name, category: category)

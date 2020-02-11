@@ -1,0 +1,36 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title
+      = t('quick_registration.log_in')
+    = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
+      %i.fa.fa-facebook-official
+    %p.general-login-text or
+  = simple_form_for(resource, as: resource_name, defaults: { input_html: { class: "general-form" }}, url: session_path(resource_name)) do |f|
+    .form-group.mb-30.text-center
+      = f.input :email,
+        placeholder: 'Enter email',
+        required: true,
+        autofocus: true,
+        input_html: { autocomplete: "email" }, class: 'form-control'
+    .form-group.mb-30.text-center
+      = f.input :password,
+        placeholder: 'Enter password',
+        required: true,
+        input_html: { autocomplete: "current-password" }, class: 'form-control'
+      - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+        = link_to "Forgot your password?", new_password_path(resource_name), class: 'help-block in-gold-500 mt-200'
+        = f.button :submit, 'Enter', class: 'btn btn-default mb-20 mt-100'
+        %br/
+    .form-group.checkbox.text-center.mb-30
+      %label.checkbox-label
+        %input.checkbox-input(hidden="true" type="checkbox")/
+        %span.checkbox-icon
+          %i.fa.fa-check
+        %span.checkbox-text Remember me
+    .text-center
+      = link_to 'Back to Store', books_path, class:'btn btn-default mb-10 mt-100'
+  %p.general-sign-text.text-center
+    Don’t have an Account?
+    - if devise_mapping.registerable? && controller_name != 'registrations'
+      = link_to I18n.t('header.sign_up'), new_registration_path(resource_name), class: 'in-gold-500'
+      %br/

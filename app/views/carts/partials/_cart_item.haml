@@ -1,0 +1,23 @@
+%tr
+  %td
+    .general-img-wrap-table
+      = image_tag( book_cover(book), alt: 'design-book', class: 'cart-img-shadow pull-left')
+  %td
+    %p.title
+      = link_to book.title, book_path(book)
+  %td
+    %span.font-16.in-gold-500
+      = t('book.price', price: book.price)
+  %td
+    .input-group
+      = link_to order_items_path(book_id: book.id, value: quantity.to_i - 1), remote: true, method: :patch, class: 'input-link minus-book' do
+        %i.fa.fa-minus.line-heaght-40
+      = f.text_field :quantity, name: book.id, value: "#{quantity}",remote: true, min: 1, readonly: true, class: 'form-control quantity-input book-quantity-js'
+      = link_to order_items_path(book_id: book.id, value: quantity.to_i + 1), method: :patch, class: 'input-link plus-book' do
+        %i.fa.fa-plus.line-heaght-40
+  %td
+    %span.font-16.in-gold-500.items_total_price
+      = t('book.price', price: ('%.2f' % (book.price*quantity.to_i)))
+  %td
+    = link_to order_item_path(book.id), method: :delete, class: 'close general-cart-close', 'aria-label': 'Close' do
+      %span(aria-hidden='true') ×

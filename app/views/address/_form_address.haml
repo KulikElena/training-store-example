@@ -1,0 +1,8 @@
+= f.input :type, :as => :hidden, :input_html => { :value => "#{type}" }
+= f.input :first_name, label: t('settings.first_name'), placeholder: t('settings.first_name')
+= f.input :last_name, label: t('settings.last_name'), placeholder: t('settings.last_name')
+= f.input :address, label: t('settings.adress_area'), placeholder: t('settings.adress_area')
+= f.input :city, label: t('settings.city'), placeholder: t('settings.city')
+= f.input :zip, label: t('settings.zip'), placeholder: t('settings.zip')
+= f.input :country, :collection => %w[Ukraine Germane USA UK], label: t('settings.country'), placeholder: t('settings.country')
+= f.input :phone, label: t('settings.phone'), placeholder: t('settings.phone')

@@ -1,0 +1,21 @@
+%main.container.general-main-wrap
+  .text-center
+    %h2.general-login-title
+      = I18n.t('devise.change_entity_password', entity: t(:your))
+  = simple_form_for(resource, as: resource_name, defaults: { input_html: { class: 'general-form' }}, url: password_path(resource_name), html: { method: :put }) do |f|
+    .form-group.mb-30.text-center
+      = f.error_notification
+      = f.input :reset_password_token, as: :hidden
+      = f.full_error :reset_password_token
+      .form-inputs
+        = f.input :password,
+          label: t('settings.new_password'),
+          required: true,
+          autofocus: true,
+          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+          input_html: { autocomplete: "new-password" }
+        = f.input :password_confirmation, label: I18n.t('devise.confirm_label'), required: true
+      .form-actions
+        %br/
+        .form-actions.text-center
+          = f.button :submit, I18n.t('devise.change_entity_password', entity: t(:my)), class: 'btn btn-default mb-20'

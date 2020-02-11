@@ -1,0 +1,5 @@
+$("#{j (render partial: 'books/partials/preview', collection: @books, as: :book)}").appendTo($(".mb-120 .row"))
+- if @pagy.next
+  $('#view_more').replaceWith("#{j (link_to t(:view_more), pagy_url_for(@pagy.page+1, @pagy), class: 'btn btn-primary', remote: true, id: 'view_more')}");
+- else
+  $('#view_more').remove();

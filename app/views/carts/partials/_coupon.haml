@@ -1,0 +1,7 @@
+.col-sm-4
+  .input-group.general-input-group
+    %label.input-label
+      = t('cart.coupon_button')
+    = f.text_field :key, placeholder: I18n.t('cart.coupon_field'), class: 'orm-control mb-30'
+    %div
+      =f.submit I18n.t('cart.coupon_button'), class: 'btn btn-primary mr-5 mb-15'

@@ -1,0 +1,18 @@
+.col-xs-6.col-sm-3.height-600.book_section
+  .general-thumb-wrap
+    .thumbnail.general-thumbnail
+      = image_tag( book_cover(book), alt: 'design-book', class: 'img-shadow general-thumbnail-img')
+      .thumb-hover
+        .general-thumb-link-wrap
+          = link_to book_path(book), class: 'thumb-hover-link' do
+            %i.fa.fa-eye.thumb-icon{ 'aria-hidden': 'true' }
+          = link_to order_items_path(book_id: book.id, quantity: OrderItemDecorator::MINIMUM_QUANTITY), method: :post, remote: false, class: 'by_book_link thumb-hover-link' do
+            %i.fa.fa-shopping-cart.thumb-icon
+  .general-thumb-info
+    %p.title
+      = book.title
+    %p.font-16.in-gold-500.price
+      = t(:'book.price', price: book.price)
+    %span.divider-sm
+    %p.lead.small.author
+      = book.decorate.authors_all
